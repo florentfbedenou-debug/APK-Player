@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131d">
+  <title>APK Player — Local</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">APK</div>
+        <div><strong>APK Player</strong><span>LOCAL ANDROID HUB</span></div>
+      </div>
+      <nav>
+        <a class="nav-item active" href="#dashboard"><span>▦</span> Tableau de bord</a>
+        <a class="nav-item" href="#library"><span>▤</span> Ma bibliothèque</a>
+        <a class="nav-item" href="#connection"><span>◉</span> Connexion Android</a>
+      </nav>
+      <div class="sidebar-note">
+        <div class="status-dot"></div>
+        <div><strong>Mode local</strong><p>Les fichiers restent sur ce PC.</p></div>
+      </div>
+      <div class="sidebar-footer">APK PLAYER · VERSION 1.0</div>
+    </aside>
+
+    <main class="main" id="dashboard">
+      <header class="topbar">
+        <div><div class="eyebrow">ESPACE DE TRAVAIL</div><h1>Tableau de bord</h1></div>
+        <div class="local-badge"><span></span> Ordinateur local</div>
+      </header>
+
+      <section class="welcome panel">
+        <div class="welcome-copy">
+          <div class="eyebrow light">TON ESPACE ANDROID</div>
+          <h2>Bienvenue dans <span>APK Player</span></h2>
+          <p>Importe un fichier APK, garde-le dans ta bibliothèque puis installe-le sur un moteur Android connecté à ADB.</p>
+          <a class="button primary" href="#importer">＋ Importer un APK</a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="phone"><div class="phone-camera"></div><div class="phone-screen"><div class="android-head">●</div><div class="screen-line"></div><div class="screen-line short"></div><div class="screen-apps"><i></i><i></i><i></i><i></i></div></div></div>
+          <div class="floating-chip">.APK</div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">▤</div><div><p>APK importés</p><strong id="apkCount">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon green">◉</div><div><p>Android connecté</p><strong id="androidState">Vérification…</strong></div></article>
+        <article class="stat-card"><div class="stat-icon blue">⌂</div><div><p>Mode</p><strong>Local</strong></div></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel upload-panel" id="importer">
+          <div class="section-heading"><div><div class="eyebrow">AJOUTER UNE APPLICATION</div><h2>Importer un APK</h2></div><span class="step-number">01</span></div>
+          <form id="uploadForm">
+            <label class="drop-zone" id="dropZone" for="apkFile">
+              <div class="upload-icon">↑</div>
+              <strong>Dépose ton APK ici</strong>
+              <span>ou clique pour choisir un fichier depuis ton PC</span>
+              <small>Format .APK · 200 Mo maximum</small>
+              <input id="apkFile" name="apk" type="file" accept=".apk,application/vnd.android.package-archive" required>
+            </label>
+            <div class="selected-file" id="selectedFile" hidden></div>
+            <button class="button primary full" id="uploadButton" type="submit">Importer le fichier</button>
+          </form>
+          <p class="message" id="uploadMessage" role="status"></p>
+        </article>
+
+        <article class="panel connection-panel" id="connection">
+          <div class="section-heading"><div><div class="eyebrow">MOTEUR D’EXÉCUTION</div><h2>Connexion Android</h2></div><span class="step-number">02</span></div>
+          <div class="connection-visual"><div class="connection-icon">▣</div><div><strong id="connectionTitle">Vérification en cours</strong><p id="connectionText">Recherche du moteur Android via ADB…</p></div></div>
+          <div class="connection-detail"><span>ADB</span><strong id="adbState">En attente</strong></div>
+          <button class="button secondary full" id="refreshStatus" type="button">↻ Vérifier la connexion</button>
+          <p class="hint">Pour installer un APK, Android doit être démarré et visible avec la commande <code>adb devices</code>.</p>
+        </article>
+      </section>
+
+      <section class="panel library-panel" id="library">
+        <div class="section-heading library-heading"><div><div class="eyebrow">TES FICHIERS</div><h2>Ma bibliothèque</h2><p class="subheading">Les APK importés sur cet ordinateur.</p></div><button class="button secondary compact" id="refreshLibrary" type="button">↻ Actualiser</button></div>
+        <div class="library-list" id="apkList"><div class="empty-state"><div class="empty-icon">▤</div><strong>Aucun APK pour le moment</strong><p>Importe ton premier fichier pour le voir apparaître ici.</p></div></div>
+      </section>
+      <footer>APK Player est un projet local indépendant. Il ne contient pas de moteur Android intégré.</footer>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
